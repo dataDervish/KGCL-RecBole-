@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# @Time   : 2024/05/20
-# @Author : Your Name
-# @Email  : your_email@domain.com
+# @Time   : 2026/03/02
+# @Author : ljq
+# @Email  : 2951297372@qq.com
 
 r"""
 KGCL
@@ -132,21 +132,20 @@ class KGCL(KnowledgeRecommender):
         return all_entity_embeddings
 
     def forward(self, perturbed=False):
-        # 如果是训练阶段 (需要计算对比损失)
+        # 计算对比损失
         if perturbed:
             # 1. UI 视图增强：丢弃用户物品交互边
             perturbed_ui_matrix = self.edge_dropout(self.norm_ui_matrix)
             ui_user_emb, ui_item_emb = self.lightgcn_forward(perturbed_ui_matrix)
             
             # 2. KG 视图增强：随机丢弃图谱关系边
-            # 这里的 drop_rate 可以和 ui 保持一致，也可以单独设置，通常 0.1 ~ 0.2
             pert_kg_edge_index, pert_kg_edge_type = self.drop_kg_edges(
                 self.kg_edge_index, self.kg_edge_type, self.edge_drop_rate
             )
             # 使用之前写好的带软剪枝/关系感知的 kg_forward
             kg_entity_emb = self.kg_forward(pert_kg_edge_index, pert_kg_edge_type)
             
-        # 如果是测试/推理阶段 (使用完整原图)
+        # 使用完整原图
         else:
             ui_user_emb, ui_item_emb = self.lightgcn_forward(self.norm_ui_matrix)
             kg_entity_emb = self.kg_forward(self.kg_edge_index, self.kg_edge_type)
