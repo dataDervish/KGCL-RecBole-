@@ -12,4 +12,16 @@ saved/
 *.egg-info/
 docs/build/
 wandb/*
-/ray_log*
+/ray_log*# 忽略数据集
+dataset/
+dataset_example/
+
+# 忽略模型权重和日志
+saved/
+log/
+*.log
+
+# 忽略 Python 缓存
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

@@ -29,8 +29,8 @@ def hyperopt_tune(args):
     hp = HyperTuning(
         objective_function,
         algo="exhaustive",
-        early_stop=10,
-        max_evals=100,
+        early_stop=20,
+        max_evals=200,
         params_file=args.params_file,
         fixed_config_file_list=config_file_list,
         display_file=args.display_file,

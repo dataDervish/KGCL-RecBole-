@@ -1,0 +1,8 @@
+# 模型超参数配置 (KGCL)
+embedding_size: 128
+ui_layers: 2          # LightGCN的层数
+kg_layers: 1          # KG图卷积的层数
+ssl_temp: 0.5         # InfoNCE 温度超参数
+ssl_reg: 0.05          # 对比学习的权重
+reg_weight: 1e-5      # L2 正则
+edge_drop_rate: 0.1   # 图增强丢边率

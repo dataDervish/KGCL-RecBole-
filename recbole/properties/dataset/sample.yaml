@@ -54,4 +54,4 @@ entity_kg_num_interval: "[0,inf)"       # (str) Entity interval for filtering kg
 relation_kg_num_interval: "[0,inf)"     # (str) Relation interval for filtering kg.
 
 # Benchmark .inter file
-benchmark_filename: ~           # (list) List of pre-split user-item interaction suffix.
+benchmark_filename: ['train','valid','test']          # (list) List of pre-split user-item interaction suffix.
